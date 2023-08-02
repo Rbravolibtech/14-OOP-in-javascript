@@ -193,7 +193,7 @@ account.latest = 50;
 console.log(account.movements);
 */
 ////////////// OBJECT CREATE ///////////////
-
+/*
 const PersonProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -260,7 +260,7 @@ ford.speedUS = 50;
 console.log(ford);
 
 //////////// INHERITANCE BETWEEN CLASSES: CONSTRUCTOR FUNCTIONS ///////////////
-
+/*
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -306,7 +306,7 @@ console.dir(Student.prototype.constructor);
 
 DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
 */
-
+/*
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
@@ -349,7 +349,7 @@ tesla.brake();
 tesla.accelerate();
 
 //////////// INHERITANCE BETWEEN CLASSES. ES6 CLASSES ///////////////
-
+/*
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -409,3 +409,33 @@ class StudentCl extends PersonCl {
 const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.introduce();
 martha.calcAge();
+*/
+//////////// INHERITANCE BETWEEN CLASSES: OBJECT.CREATE ///////////////
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'Computer Science');
+jay.introduce();
+jay.calcAge();
