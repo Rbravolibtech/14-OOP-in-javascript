@@ -111,7 +111,7 @@ bmw.brake();
 bmw.accelerate();
 */
 ////////////// ES6 CLASSES ///////////////
-
+/*
 // Class expression
 // const PersonCl = class {}
 
@@ -148,5 +148,25 @@ jessica.greet();
 
 const walter = new PersonCl('Walter White', 1965);
 // PersonCl.hey();
-
+*/
 ////////////// SETTERS AND GETTERS ///////////////
+
+const account = {
+  owner: 'Jonas',
+  movements: [200, 530, 120, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+
+account.latest = 50;
+console.log(account.movements);
+
+////////////// STATIC METHODS ///////////////
